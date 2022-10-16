@@ -1,0 +1,8 @@
+<div>
+  <h3>Configuration</h3>
+  <p>Enter a valid token:</p>
+  <form (submit)="saveToken()" >
+    <input type="text" id="token" name="token" placeholder="Token goes here!" [(ngModel)]="token"><br><br>
+    <button type="submit" id="btn-config" name="btn-config">Submit</button>
+  </form>
+</div>
