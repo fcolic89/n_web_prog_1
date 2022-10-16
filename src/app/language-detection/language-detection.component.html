@@ -1,1 +1,13 @@
-<p>language-detection works!</p>
+<div>
+  <form [formGroup]="ldGroup" (submit)="postLangDet()">
+    <input type="text" id="ldInput" name="ldInput" placeholder="Text..." [formControlName]="'ldInput'"><br>
+    <input type="checkbox" id="ldCheck" name="ldCheck" [formControlName]="'ldCheck'">
+    <label>Clean</label><br><br>
+    <button type="submit" id="ldBtn" name="ldBtn">Submit</button><br><br>
+  </form>
+
+  <div *ngFor="let lang of langs">
+    <h3>Language: {{lang.lang}}</h3>
+    <h3>Confidence: {{lang.confidence}}</h3>
+  </div>
+</div>
