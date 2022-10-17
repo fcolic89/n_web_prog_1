@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
 import {LDResponse} from "../model";
@@ -22,6 +22,21 @@ export class PostService{
   // }
 
   langDetection(text: string, clean: boolean): Observable<LDResponse>{
-    return this.httpClient.get<LDResponse>(`${this.url}/li/v1/?text=${text}&clean=${clean}&token=${localStorage.getItem("token")?.toString()}`)
+
+    let token: string = '';
+    let tmp: string | null | undefined;
+
+    tmp = localStorage.getItem('token');
+    if(tmp === null || tmp === undefined)
+      token = '';
+    else
+      token = tmp.toString()
+
+    const params = new HttpParams()
+      .set('text', text)
+      .set('clean', clean)
+      .set('token',token)
+
+    return this.httpClient.get<LDResponse>(`${this.url}/li/v1/`, {params: params});
   }
 }
