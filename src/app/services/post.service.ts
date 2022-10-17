@@ -59,16 +59,13 @@ export class PostService{
   }
 
   getToken(): string{
-    let token: string = '';
     let tmp: string | null | undefined;
 
     tmp = localStorage.getItem('token');
     if(tmp === null || tmp === undefined)
-      token = '';
+      return '';
     else
-      token = tmp.toString()
-
-    return token;
+      return tmp.toString()
   }
 
 }

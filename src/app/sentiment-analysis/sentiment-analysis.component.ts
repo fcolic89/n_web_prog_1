@@ -46,9 +46,8 @@ export class SentimentAnalysisComponent implements OnInit {
       let tmp = 125*score;
       let red = 125-tmp;
       let green = 125+tmp;
-
       let color = "#" + this.componentToHex(red) + this.componentToHex(green) + this.componentToHex(0);
-      console.log(color);
+
       ele.style.setProperty('color', color);
     }
   }
