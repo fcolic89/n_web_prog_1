@@ -1,1 +1,12 @@
-<p>text-similarity works!</p>
+<div>
+  <form [formGroup]="tsGroup" (submit)="getTextSim()">
+    <textarea rows="4" cols="50" id="tsInput1" name="tsInput1" placeholder="Text..." [formControlName]="'tsInput1'"></textarea><br>
+    <textarea rows="4" cols="50" id="tsInput2" name="tsInput2" placeholder="Text..." [formControlName]="'tsInput2'"></textarea><br><br>
+    <button type="submit" id="tsBtn" name="tsBtn">Submit</button><br><br>
+  </form>
+
+  <div *ngIf="similarity !== ''">
+    <h4>Result</h4>
+    Similarity (from 0 to 1.0): {{similarity}}
+  </div>
+</div>
