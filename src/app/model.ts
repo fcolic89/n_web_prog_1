@@ -17,3 +17,15 @@ export interface TSResponse{
   langConfidence: string,
   similarity: string
 }
+
+export interface SAResponse{
+  timestamp: string,
+  time: string,
+  lang: string,
+  sentiment: Sentiment
+}
+
+export interface Sentiment{
+  score: string,
+  type: string
+}

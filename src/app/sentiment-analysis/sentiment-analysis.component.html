@@ -1,1 +1,18 @@
-<p>sentiment-analysis works!</p>
+<div>
+  <form [formGroup]="saGroup" (submit)="getSenAnl()">
+    <input type="text" id="saInput" name="saInput" placeholder="Text..." [formControlName]="'saInput'"><br>
+    <select name="saSelect" id="saSelect" [formControlName]="'saSelect'">
+      <option value="auto">Auto</option>
+      <option value="en">English</option>
+      <option value="it">Italian</option>
+    </select><br><br>
+    <button type="submit">Submit</button>
+  </form>
+</div><br>
+
+<div [hidden]="isHidden">
+  <h3>Result:</h3>
+  Score: {{sentiment.score}}
+  Type: <h5 id="saScore">{{sentiment.type}}</h5>
+</div>
+

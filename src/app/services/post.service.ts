@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
-import {LDResponse, TSResponse} from "../model";
+import {LDResponse, SAResponse, TSResponse} from "../model";
 
 @Injectable({
   providedIn: 'root'
@@ -23,14 +23,7 @@ export class PostService{
 
   langDetection(text: string, clean: boolean): Observable<LDResponse>{
 
-    let token: string = '';
-    let tmp: string | null | undefined;
-
-    tmp = localStorage.getItem('token');
-    if(tmp === null || tmp === undefined)
-      token = '';
-    else
-      token = tmp.toString()
+    let token = this.getToken();
 
     const params = new HttpParams()
       .set('text', text)
@@ -42,14 +35,7 @@ export class PostService{
 
   textSimilarity(text1: string, text2: string): Observable<TSResponse>{
 
-    let token: string = '';
-    let tmp: string | null | undefined;
-
-    tmp = localStorage.getItem('token');
-    if(tmp === null || tmp === undefined)
-      token = '';
-    else
-      token = tmp.toString()
+    let token = this.getToken();
 
     const params = new HttpParams()
       .set('text1', text1)
@@ -59,4 +45,30 @@ export class PostService{
 
     return this.httpClient.get<TSResponse>(`${this.url}/sim/v1/`, {params: params});
   }
+
+  sentimentAnalysis(text: string, lang: string): Observable<SAResponse>{
+
+    let token = this.getToken()
+
+    const params = new HttpParams()
+      .set('text', text)
+      .set('lang', lang)
+      .set('token', token)
+
+    return this.httpClient.get<SAResponse>(`${this.url}/sent/v1/`, {params: params});
+  }
+
+  getToken(): string{
+    let token: string = '';
+    let tmp: string | null | undefined;
+
+    tmp = localStorage.getItem('token');
+    if(tmp === null || tmp === undefined)
+      token = '';
+    else
+      token = tmp.toString()
+
+    return token;
+  }
+
 }
