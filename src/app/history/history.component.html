@@ -1,0 +1,12 @@
+<div>
+  <div *ngIf="history != []; then thenBlock; else elseBlock"></div>
+  <ng-template #thenBlock>
+    <div *ngFor="let entry of history">
+      {{entry}}<br>
+      ---------------------------------
+    </div>
+  </ng-template>
+  <ng-template #elseBlock>
+    The history is empty!
+  </ng-template>
+</div>
