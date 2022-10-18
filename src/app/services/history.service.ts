@@ -19,7 +19,6 @@ export class HistoryService{
     }
 
     this.history.push(entry.slice(0,-1));
-    console.log(this.history);
   }
 
   getHistory(): string[]{
