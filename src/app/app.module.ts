@@ -11,6 +11,7 @@ import { TextSimilarityComponent } from './text-similarity/text-similarity.compo
 import { LanguageDetectionComponent } from './language-detection/language-detection.component';
 import { SentimentAnalysisComponent } from './sentiment-analysis/sentiment-analysis.component';
 import {AuthGuard} from "./auth.guard";
+import { HistoryComponent } from './history/history.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import {AuthGuard} from "./auth.guard";
     TextSimilarityComponent,
     LanguageDetectionComponent,
     SentimentAnalysisComponent,
+    HistoryComponent,
   ],
   imports: [
     BrowserModule,
