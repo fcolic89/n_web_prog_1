@@ -10,11 +10,14 @@ import {HistoryService} from "../services/history.service";
 export class HistoryComponent implements OnInit {
 
   history: string[] = [];
+  nothing: boolean = true;
 
   constructor(private route: ActivatedRoute, private historyService: HistoryService) { }
 
   ngOnInit(): void {
     this.history =  this.historyService.getHistory();
+    if(this.history !== [])
+      this.nothing = false;
   }
 
 

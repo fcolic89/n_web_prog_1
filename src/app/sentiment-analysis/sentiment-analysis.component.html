@@ -1,7 +1,8 @@
 <div>
   <h3>Sentiment analysis</h3><br>
   <form [formGroup]="saGroup" (submit)="getSenAnl()">
-    <input type="text" id="saInput" name="saInput" placeholder="Text..." [formControlName]="'saInput'"><br>
+    <input type="text" id="saInput" name="saInput" placeholder="Text..." [formControlName]="'saInput'">
+    Language:
     <select name="saSelect" id="saSelect" [formControlName]="'saSelect'">
       <option value="auto">Auto</option>
       <option value="en">English</option>

@@ -1,7 +1,9 @@
 <div>
   <h3>Text similarity</h3><br>
   <form [formGroup]="tsGroup" (submit)="getTextSim()">
+    Text 1:
     <textarea rows="4" cols="50" id="tsInput1" name="tsInput1" placeholder="Text..." [formControlName]="'tsInput1'"></textarea><br>
+    Text 2:
     <textarea rows="4" cols="50" id="tsInput2" name="tsInput2" placeholder="Text..." [formControlName]="'tsInput2'"></textarea><br><br>
     <button type="submit" id="tsBtn" name="tsBtn">Submit</button><br><br>
   </form>
