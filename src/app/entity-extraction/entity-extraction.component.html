@@ -1,1 +1,44 @@
-<p>entity-extraction works!</p>
+<div>
+  <h3>Entity extraction</h3><br>
+  <form (submit)="getEnEx()" [formGroup]="eeGroup">
+    <input type="text" id="eeInput" name="eeInput" placeholder="Text..." [formControlName]="'eeInput'"><br><br>
+    <h5>Include:</h5>
+    <input type="checkbox" id="cbImage" name="cbImage" value="image" [formControlName]="'cbImage'" > Image
+    <input type="checkbox" id="cbAbstract" name="cbAbstract" value="abstract" [formControlName]="'cbAbstract'" > Abstract
+    <input type="checkbox" id="cbCategories" name="cbCategories" value="categories" [formControlName]="'cbCategories'"> Categories<br><br>
+    <h5>Minimum confidence: </h5>
+
+    <div class="slidecontainer">
+      0 <input type="range" min="0" max="100" value="50" class="slider" id="minConfidence" [formControlName]="'minConfidence'"> 1
+    </div><br>
+
+    <button type="submit">Submit</button>
+  </form><br>
+
+  <div [hidden]="isHidden">
+    <h4>Results: </h4>
+    <div *ngFor="let en of entities">
+<!--      label-->
+      <h5>{{en.label}}</h5>
+<!--      image-->
+      <div *ngIf="en.image !== undefined">
+        <img src={{en.image.full}} width="100" height="100">
+      </div>
+<!--      categories-->
+      <div *ngIf="en.categories !== undefined">
+        <b>Categories:</b> [
+        <span *ngFor="let cat of en.categories">
+          <span>{{cat}}; </span>
+        </span>
+        ]<br>
+      </div>
+
+<!--      abstract-->
+      <div *ngIf="en.abstract !== undefined">
+        <b>Abstract:</b> {{en.abstract}}<br>
+      </div>
+      -----------------
+    </div>
+  </div>
+
+</div>

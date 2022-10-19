@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
-import {LDResponse, SAResponse, TSResponse} from "../model";
+import {EEResponse, LDResponse, SAResponse, TSResponse} from "../model";
 import {HistoryService} from "./history.service";
 
 @Injectable({
@@ -60,6 +60,48 @@ export class PostService{
 
     this.historyService.addEntry('/sent/v1', {'text': text, 'lang': lang, 'token': token});
     return this.httpClient.get<SAResponse>(`${this.url}/sent/v1/`, {params: params});
+  }
+
+  entityExtraction(text: string, image: boolean, abstraction: boolean, categories: boolean, minConfidence: string): Observable<EEResponse>{
+
+    let token = this.getToken();
+
+    minConfidence = String(parseFloat(minConfidence)/100);
+
+    let include: string = '';
+    if(image){
+      include += 'image,';
+    }
+    if(abstraction){
+      include += 'abstract,';
+    }
+    if(categories){
+      include += 'categories,';
+    }
+    include = include.slice(0, -1);
+
+    let params = null;
+
+    if(include === ''){
+      params = new HttpParams()
+        .set('text', text)
+        .set('min_confidence', minConfidence)
+        .set('lang', 'en')
+        .set('token', token)
+
+      this.historyService.addEntry('/nex/v1', {'text': text, 'lang': 'en','min_confidence': minConfidence,'token': token});
+    }else{
+      params = new HttpParams()
+        .set('text', text)
+        .set('include', include)
+        .set('min_confidence', minConfidence)
+        .set('lang', 'en')
+        .set('token', token)
+
+      this.historyService.addEntry('/nex/v1', {'text': text, 'include': include, 'lang': 'en','min_confidence': minConfidence,'token': token});
+    }
+
+    return this.httpClient.get<EEResponse>(`${this.url}/nex/v1`, {params: params});
   }
 
   getToken(): string{
