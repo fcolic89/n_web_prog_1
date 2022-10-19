@@ -12,6 +12,7 @@ export class ConfigurationComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log('token: 02fe667ebca6466ab10558b9674c0ece');
   }
 
   saveToken(): void{
