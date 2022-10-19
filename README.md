@@ -31,9 +31,9 @@ Stranica na kojoj se nalazi jedno tekstualno polje za unos teksta nad kojim žel
 
 -1                    0                    1    
 ### Tokom životnog ciklusa stranice (taba), tj. dok se ne desi refresh cele stranice, neophodno je evidentirati svaki API poziv ka Dandelion API-u. Potrebno je osmisliti strukturu gde bi se čuvala vrednost svakog URL-a poslatog ka Dandelion API-u, kao i datum i vreme poziva. Stanje ove strukture treba prikazati klikom na novu stavku u meniju - history. Nakon refresh-a stranice, očekuje se da je ova struktura prazna. Primer kako bi trebalo prikazati istoriju: 
-[13.10.2021. 21:41:55] GET https://api.dandelion.eu/datatxt/li/v1?text=Hello world&token=1234
-[13.10.2021. 21:43:14] GET https://api.dandelion.eu/datatxt/li/v1?text=Hello RAF&token=1234
-[13.10.2021. 21:50:55] GET https://api.dandelion.eu/datatxt/li/v1?text=Hello RG&token=1234
+[13.10.2021. 21:41:55] GET https://api.dandelion.eu/datatxt/li/v1?text=Hello world&token=1234 \
+[13.10.2021. 21:43:14] GET https://api.dandelion.eu/datatxt/li/v1?text=Hello RAF&token=1234 \
+[13.10.2021. 21:50:55] GET https://api.dandelion.eu/datatxt/li/v1?text=Hello RG&token=1234 \
 ## Tehnički zahtevi
 Uslov je da web aplikacija bude single page i napisana upotrebom Angular frontend framework-a. CSS biblioteke su dozvoljene i opcione - estetski izgled se ne ocenjuje.
 ## Predaja zadatka
